@@ -28,20 +28,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("user")
                 .password("{noop}password")
-                .roles("USER")
+                .roles("USER", "ADMIN")
                 .and()
                 .withUser("admin")
                 .password("{noop}admin")
                 .roles("USER", "ADMIN");
     }
 
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        return source;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.cors().and().csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/login").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic().and().csrf().disable();
+                .httpBasic();
     }
 }
