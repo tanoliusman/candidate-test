@@ -1,0 +1,61 @@
+package com.candidate.test.service.impl;
+
+import com.candidate.test.model.Company;
+import com.candidate.test.model.Employee;
+import com.candidate.test.repository.EmployeeRepository;
+import com.candidate.test.service.CompanyService;
+import com.candidate.test.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class EmployeeServiceImpl implements EmployeeService {
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+    @Autowired
+    private CompanyService companyService;
+    @Override
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
+    }
+
+    @Override
+    public Employee addNewEmployee(Employee employee) {
+
+        Employee createdEmployee = employeeRepository.save(employee);
+
+
+
+        return createdEmployee;
+    }
+
+    @Override
+    public Optional<Employee> getEmployeeById(String id) {
+        return employeeRepository.findById(id);
+    }
+
+    @Override
+    public Employee updateEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    @Override
+    public String deleteEmployee(String id) {
+        try {
+            employeeRepository.deleteById(id);
+        }catch(Exception ex){
+            return "False";
+        }
+        return "True";
+    }
+
+    @Override
+    public List<Employee> getEmployeeByCompanyId(String companyId) {
+        return employeeRepository.findByCompanyId(companyId);
+    }
+}
