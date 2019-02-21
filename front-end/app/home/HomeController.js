@@ -20,6 +20,10 @@ function HomeController($window, $http, $scope) {
         }, function (error) {
             console.log(error);
         });
+
+        // $('#sidebarToggle').click(function() {
+        //    console.log('hi');
+        //   });
     };
 
    $scope.populateDataTable =  function(data){

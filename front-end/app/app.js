@@ -21,6 +21,7 @@ function config($routeProvider, $locationProvider) {
 
 run.$inject = ['$rootScope', '$location', '$http', '$window'];
 function run($rootScope, $location, $http, $window) {
+   
     var userData = $window.sessionStorage.getItem('userData');
     console.log(userData);
     if (userData) {
@@ -35,6 +36,7 @@ function run($rootScope, $location, $http, $window) {
           = $.inArray($location.path(), ['/login']) === -1;
         var loggedIn
           = $window.sessionStorage.getItem('userData');
+          $rootScope.isLogin=!restrictedPage;
         if (restrictedPage && !loggedIn) {
             $location.path('/login');
         }

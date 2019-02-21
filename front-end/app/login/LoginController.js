@@ -7,6 +7,7 @@
     function LoginController($location, $window, $http) {
         var vm = this;
         vm.login = login;
+        vm.isLogin = true;
  
         (function initController() {
             $window.localStorage.setItem('token', '');
