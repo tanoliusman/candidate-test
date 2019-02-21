@@ -34,7 +34,7 @@
                     );
                     $http.defaults.headers.common['Authorization']
                       = 'Basic ' + token;
-                    $location.path('/');
+                    $location.path('/company');
                 } else {
                     alert("Authentication failed.")
                 }

@@ -19,9 +19,14 @@
 
          
                 <div ng-hide="isLogin" ng-include="'../shared/navbar/navbar.html'"></div>
+                
                 <div id="content-wrapper" class="d-flex flex-column">
-            <div ng-view></div>
-                <div  ng-hide="isLogin" ng-include="'../shared/footer/footer.html'"></div>
+                        <div id="content">
+
+                                <div ng-hide="isLogin" ng-include="'../shared/topbar/topbar.html'"></div>
+                                    <div ng-view></div>
+                                </div>
+                <!-- <div  ng-hide="isLogin" ng-include="'../shared/footer/footer.html'"></div> -->
             </div>
         </div>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -41,7 +46,7 @@
     <script src ="vendor/jquery/jquery.min.js"></script>
     <script src="js/sb-admin-2.min.js"></script>
     <script src="app.js"></script>
-    <script src="home/homeController.js"></script>
+    <script src="company/CompanyController.js"></script>
     <script src="login/LoginController.js"></script>
     
       <!-- Bootstrap core JavaScript-->

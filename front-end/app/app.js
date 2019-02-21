@@ -7,9 +7,9 @@ angular
 
 config.$inject = ['$routeProvider', '$locationProvider'];
 function config($routeProvider, $locationProvider) {
-    $routeProvider.when('/', {
-        controller: 'HomeController',
-        templateUrl: 'home/home.html',
+    $routeProvider.when('/company', {
+        controller: 'CompanyController',
+        templateUrl: 'company/company.html',
         controllerAs: 'vm'
     }).when('/login', {
         controller: 'LoginController',
@@ -21,15 +21,22 @@ function config($routeProvider, $locationProvider) {
 
 run.$inject = ['$rootScope', '$location', '$http', '$window'];
 function run($rootScope, $location, $http, $window) {
-   
+    $rootScope.logout = function () {
+        console.log('hiddd');
+        $window.sessionStorage.setItem('userData', '');
+        $http.defaults.headers.common['Authorization'] = 'Basic';
+        $location.path('/login');
+    }
     var userData = $window.sessionStorage.getItem('userData');
     console.log(userData);
     if (userData) {
         $http.defaults.headers.common['Authorization']
           = 'Basic ' + JSON.parse(userData).authData;
     }
-    $http.defaults.headers.common['Accepts']
-    = 'application/json';
+    console.log(userData);
+    // $http.defaults.headers.common['Accepts']
+    // = 'application/json';
+   
     $rootScope
     .$on('$locationChangeStart', function (event, next, current) {
         var restrictedPage
