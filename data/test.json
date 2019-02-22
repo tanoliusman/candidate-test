@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5c6d87874c5f473668134ac9"},"name":"Test 2","_class":"com.candidate.test.model.Test"}
+{"_id":{"$oid":"5c6fdea34b237b0488e8f4c3"},"name":"AWC","_class":"com.candidate.test.model.Test"}

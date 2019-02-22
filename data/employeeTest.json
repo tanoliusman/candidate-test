@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5c704e78950df173b44ec163"},"employeeId":"5c700a6e0e088772b463c0a3","testId":"5c6fdea34b237b0488e8f4c3","passed":false,"_class":"com.candidate.test.model.EmployeeTest"}
+{"_id":{"$oid":"5c704ffe950df1c898eb7890"},"employeeId":"5c704fee950df1c898eb788f","testId":"5c6d87874c5f473668134ac9","passed":true,"_class":"com.candidate.test.model.EmployeeTest"}
+{"_id":{"$oid":"5c705007950df1c898eb7891"},"employeeId":"5c704fee950df1c898eb788f","testId":"5c6fdea34b237b0488e8f4c3","passed":false,"_class":"com.candidate.test.model.EmployeeTest"}

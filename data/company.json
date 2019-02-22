@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5c6d4a8658227741e432a3e9"},"name":"Ciklum1232","city":"islamabad44544","country":"pakistan","address":"F-5/1 evacuee trust","employees":[{"$id":{"$oid":"5c6d7fd74c5f47532040bda6"}},{"$id":{"$oid":"5c6d87db4c5f473668134aca"}},{"$id":{"$oid":"5c6f7ed44b237b0488e8f4b9"}}],"_class":"com.candidate.test.model.Company"}
+{"_id":{"$oid":"5c6fdba14b237b0488e8f4c0"},"name":"asdf","city":"asdf","country":"asdf","address":"asdf","_class":"com.candidate.test.model.Company"}
