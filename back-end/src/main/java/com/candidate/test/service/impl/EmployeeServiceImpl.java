@@ -57,9 +57,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         try {
             employeeRepository.deleteById(id);
         }catch(Exception ex){
-            return "False";
+            return "false";
         }
-        return "True";
+        return "true";
     }
 
     @Override
