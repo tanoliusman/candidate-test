@@ -5,6 +5,7 @@ import com.candidate.test.model.Employee;
 import com.candidate.test.repository.EmployeeRepository;
 import com.candidate.test.service.CompanyService;
 import com.candidate.test.service.EmployeeService;
+import com.candidate.test.service.EmployeeTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -14,6 +15,8 @@ import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+    @Autowired
+    private EmployeeTestService employeeTestService;
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -21,7 +24,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     private CompanyService companyService;
     @Override
     public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+
+        List<Employee> employees= employeeRepository.findAll();
+        for(Employee employee : employees){
+            employee.setTests(employeeTestService.getAllEmployeeTests(employee.getId()));
+        }
+        return employees;
     }
 
     @Override

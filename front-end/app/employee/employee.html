@@ -1,0 +1,270 @@
+
+           
+     
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Employee</h1>
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Employee Table</h6>
+            </div>
+            <div class="alert alert-success" id="successAlert" style="display:none;" role="alert">
+                    {{vm.responseMessage}}
+                  </div>
+            <div class="alert alert-danger" id="errorAlert" style="display:none;" role="alert">
+                    {{vm.responseMessage}}
+            </div>
+
+            <button type="button" class=" btn btn-info " style="width: 100px; margin: 10px;" data-toggle="modal" data-target="#employeeAddModal">Add New</button>
+            <div class="card-body">
+              <div class="table-responsive">
+                    <table id="example" class="table table-bordered" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Mobile Number</th>
+                                    <th>Email</th>
+                                    <th>Company</th>
+                                    <th> &nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+        
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-lg" id="editEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Update Employee</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                            <form>
+                                    <div class="form-group row">
+                                      <label for="editName" class="col-sm-2 col-form-label">Name</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="editName" ng-model="vm.editEmployee.name" placeholder="Name">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="editPhoneNumber" class="col-sm-2 col-form-label">Number</label>
+                                      <div class="col-sm-10">
+                                        <input type="text"  class="form-control" id="editPhoneNumber" ng-model="vm.editEmployee.phoneNumber" placeholder="Phone Number">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="editEmail" class="col-sm-2 col-form-label">Email</label>
+                                      <div class="col-sm-10">
+                                        <input type="email"  class="form-control" id="editEmail" ng-model="vm.editEmployee.email" placeholder="Email">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="editAddress" class="col-sm-2 col-form-label">Company</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" ng-model="vm.editEmployee.companyId" style="height: 40px;">
+                                                <option ng-repeat="company in vm.companies" value="{{company.id}}">
+                                                    {{company.name}}
+                                                </option>  
+                                            
+                                            </select>
+                                             </div>
+                                    </div>
+                                    <!-- <div class="form-group row">
+                                            <label for="editCity" class="col-sm-2 col-form-label">Password</label>
+                                            <div class="col-sm-10">
+                                                <input type="text"  class="form-control" id="editCity" ng-model="editCompany.city" placeholder="City">
+                                            </div>
+                                        </div> -->
+                                  </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" ng-click="updateEmployee()">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+    <div class="modal fade bd-example-modal-lg" id="employeeAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <form>
+                            <div class="form-group row">
+                                <label for="addName" class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="addName" ng-model="vm.newEmployee.name" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="newNumber" class="col-sm-2 col-form-label">Number</label>
+                                <div class="col-sm-10">
+                                <input type="number"  class="form-control" id="newNumber" ng-model="vm.newEmployee.phoneNumber" placeholder="Number">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="newEmail" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                <input type="email"  class="form-control" id="newEmail" ng-model="vm.newEmployee.email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="newAddress" class="col-sm-2 col-form-label">Company</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" ng-model="vm.newEmployee.companyId" style="height: 40px;">
+                                        <option ng-repeat="company in vm.companies" value="{{company.id}}">
+                                            {{company.name}}
+                                        </option>  
+                                    
+                                    </select>
+                                    <!-- <input type="text"  class="form-control" id="newAddress" ng-model="vm.newEmployee.company" placeholder="Company"> -->
+                                </div>
+                            </div>
+                            <!-- <div class="form-group row">
+                                    <label for="editCity" class="col-sm-2 col-form-label">Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="text"  class="form-control" id="editCity" ng-model="editCompany.city" placeholder="City">
+                                    </div>
+                                </div> -->
+                            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="addEmployee()">Save changes</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Do you really want to delete this company?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-danger" ng-click="removeEmployee()">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+
+
+              
+        <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                  <table id="testTable" class="table table-bordered">
+                                          <thead>
+                                              <tr>
+                                                  <th>TestName</th>
+                                                  <th>Status</th>
+                                                  <th> &nbsp;</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                          </tbody>
+                                      </table>
+                            </div>
+                          </div>
+          
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#addEmployeeTest" data-dismiss="modal" >Add Test</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                <div class="modal fade bd-example-modal-lg" id="addEmployeeTest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Test</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group row">
+                                  <label for="editName" class="col-sm-2 col-form-label">Test</label>
+                                  <select class="form-control col-sm-8" ng-model="vm.addTest.testId" >
+                                      <option ng-repeat="test in vm.tests" value="{{test.id}}">
+                                          {{test.name}}
+                                      </option> 
+                                  </select> 
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="editName" class="col-sm-2 col-form-label">Result</label>
+                                    <input type="checkbox" data-toggle="toggle" ng-model="vm.addTest.passed" data-on="Enabled" data-off="Disabled">
+                                  </div>
+                               
+                              </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" ng-click="addTest()">Save changes</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="modal fade" id="testConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              Do you really want to delete this Test?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-danger" ng-click="removeEmployeeTest()">Delete</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>

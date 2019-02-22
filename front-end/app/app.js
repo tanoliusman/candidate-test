@@ -15,6 +15,14 @@ function config($routeProvider, $locationProvider) {
         controller: 'LoginController',
         templateUrl: 'login/login.html',
         controllerAs: 'vm'
+    }).when('/test', {
+        controller: 'TestController',
+        templateUrl: 'test/test.html',
+        controllerAs: 'vm'
+    }).when('/employee', {
+        controller: 'EmployeeController',
+        templateUrl: 'employee/employee.html',
+        controllerAs: 'vm'
     }).otherwise({ redirectTo: '/login' });
 }
 

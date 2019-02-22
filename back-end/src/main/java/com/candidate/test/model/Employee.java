@@ -1,6 +1,9 @@
 package com.candidate.test.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+
+import java.util.List;
 
 public class Employee {
 
@@ -10,6 +13,9 @@ public class Employee {
     private String phoneNumber;
     private String email;
     private String companyId;
+
+    @Transient
+    private List<EmployeeTest> tests;
 
     public String getId() {
         return id;
@@ -49,5 +55,13 @@ public class Employee {
 
     public void setCompanyId(String companyId) {
         this.companyId = companyId;
+    }
+
+    public List<EmployeeTest> getTests() {
+        return tests;
+    }
+
+    public void setTests(List<EmployeeTest> tests) {
+        this.tests = tests;
     }
 }

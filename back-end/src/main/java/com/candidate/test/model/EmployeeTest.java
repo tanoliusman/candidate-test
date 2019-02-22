@@ -1,8 +1,13 @@
 package com.candidate.test.model;
 
+import org.springframework.data.annotation.Id;
+
 public class EmployeeTest {
+
+    @Id
     private String id;
-    private String name;
+    private String employeeId;
+    private String testId;
     private boolean passed;
 
     public String getId() {
@@ -13,12 +18,20 @@ public class EmployeeTest {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getEmployeeId() {
+        return employeeId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getTestId() {
+        return testId;
+    }
+
+    public void setTestId(String testId) {
+        this.testId = testId;
     }
 
     public boolean isPassed() {
